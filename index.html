@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quyen's Hub | Game, Travel & Kitchen</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Pretendard:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Pretendard', sans-serif; }
+    </style>
+</head>
+<body class="bg-slate-900 text-slate-100 antialiased">
+
+    <!-- Header & Navigation -->
+    <header class="sticky top-0 z-50 bg-slate-900/80 backdrop-blur-md border-b border-slate-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+            <div class="flex items-center space-x-3">
+                <div class="bg-gradient-to-tr from-purple-600 to-indigo-600 text-white font-extrabold p-2.5 rounded-xl text-xl shadow-lg shadow-purple-500/20">QH</div>
+                <div>
+                    <span class="block text-xs font-semibold tracking-wider text-purple-400 uppercase">Personal Portfolio Hub</span>
+                    <span class="text-lg font-bold text-white">Quyen's Project Space</span>
+                </div>
+            </div>
+            <nav class="hidden md:flex space-x-8 text-sm font-medium text-slate-300">
+                <a href="#projects" class="hover:text-purple-400 transition">프로젝트 쇼케이스</a>
+                <a href="#features" class="hover:text-purple-400 transition">핵심 특징</a>
+                <a href="#contact" class="hover:text-purple-400 transition">연락처</a>
+            </nav>
+            <div>
+                <a href="#projects" class="bg-purple-600 hover:bg-purple-500 text-white text-sm font-medium px-5 py-2.5 rounded-xl shadow-lg shadow-purple-600/30 transition">
+                    프로젝트 탐색하기
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="relative py-20 lg:py-32 overflow-hidden bg-gradient-to-b from-slate-900 via-slate-900 to-slate-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
+            <span class="inline-block bg-purple-500/10 border border-purple-500/30 text-purple-300 text-xs font-semibold px-4 py-1.5 rounded-full uppercase tracking-wider mb-6 shadow-inner">
+                ✨ Welcome to My Creative Web Portfolio
+            </span>
+            <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-white tracking-tight leading-tight mb-6">
+                재미있는 게임, 다채로운 여행, 그리고 미식의 즐거움<br><span class="bg-gradient-to-r from-purple-400 via-indigo-400 to-pink-400 bg-clip-text text-transparent">나만의 디지털 프로젝트 허브</span>
+            </h1>
+            <p class="max-w-2xl mx-auto text-lg text-slate-400 mb-10 leading-relaxed">
+                직접 제작한 인터랙티브 웹사이트들을 한곳에 모았습니다. 아케이드 게임부터 서울/부산 여행 가이드, 하노이 정통 쌀국수 매장까지 지금 바로 경험해 보세요.
+            </p>
+            <div class="flex flex-wrap justify-center gap-4">
+                <a href="https://nhuquyenprc-bit.github.io/game/" target="_blank" class="bg-purple-600 hover:bg-purple-500 text-white font-medium px-6 py-3.5 rounded-xl shadow-lg shadow-purple-600/30 transition flex items-center space-x-2">
+                    <span>🎮 게임 플레이하기</span>
+                </a>
+                <a href="https://nhuquyenprc-bit.github.io/travel/" target="_blank" class="bg-blue-600 hover:bg-blue-500 text-white font-medium px-6 py-3.5 rounded-xl shadow-lg shadow-blue-600/30 transition flex items-center space-x-2">
+                    <span>✈️ 여행 가이드 보기</span>
+                </a>
+                <a href="https://nhuquyenprc-bit.github.io/vietnamrestaurant/" target="_blank" class="bg-emerald-600 hover:bg-emerald-500 text-white font-medium px-6 py-3.5 rounded-xl shadow-lg shadow-emerald-600/30 transition flex items-center space-x-2">
+                    <span>🍜 쌀국수 매장 방문하기</span>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" class="py-20 bg-slate-800/50 border-t border-slate-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-16">
+                <span class="text-purple-400 font-semibold text-sm uppercase tracking-wider">Connected Web Pages</span>
+                <h2 class="text-3xl font-bold text-white mt-2 mb-4">구축된 프로젝트 쇼케이스</h2>
+                <p class="text-slate-400">제작하신 3가지 핵심 웹페이지를 목적에 맞게 분류하고 링크로 연결해 두었습니다.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Project 1: Game -->
+                <div class="bg-slate-800 border border-slate-700/80 rounded-2xl overflow-hidden shadow-xl hover:border-purple-500/50 transition flex flex-col justify-between group">
+                    <div class="p-8">
+                        <div class="flex items-center justify-between mb-4">
+                            <span class="bg-purple-500/20 text-purple-300 border border-purple-500/30 text-xs font-bold px-3 py-1 rounded-full">Interactive Game</span>
+                            <span class="text-xs text-slate-500">Arcade & Fun</span>
+                        </div>
+                        <h3 class="text-2xl font-bold text-white mb-3 group-hover:text-purple-400 transition">Quyen's Arcade (게임)</h3>
+                        <p class="text-slate-400 mb-6 leading-relaxed text-sm">
+                            웹 브라우저에서 가볍게 즐길 수 있는 재미있는 인터랙티브 게임 콘텐츠 공간입니다. 언제든지 접속해 플레이를 즐겨보세요!
+                        </p>
+                        <ul class="space-y-2 text-sm text-slate-300 mb-6">
+                            <li class="flex items-center">⚡ 흥미진진한 아케이드 플레이</li>
+                            <li class="flex items-center">🎯 웹 기반 즉실행 인터랙션</li>
+                        </ul>
+                    </div>
+                    <div class="px-8 pb-8 pt-0">
+                        <a href="https://nhuquyenprc-bit.github.io/game/" target="_blank" class="block w-full bg-purple-600 hover:bg-purple-500 text-white font-medium text-center py-3 rounded-xl transition shadow-md shadow-purple-600/20">
+                            게임 페이지 바로가기 →
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Project 2: Travel -->
+                <div class="bg-slate-800 border border-slate-700/80 rounded-2xl overflow-hidden shadow-xl hover:border-blue-500/50 transition flex flex-col justify-between group">
+                    <div class="p-8">
+                        <div class="flex items-center justify-between mb-4">
+                            <span class="bg-blue-500/20 text-blue-300 border border-blue-500/30 text-xs font-bold px-3 py-1 rounded-full">Travel & Tourism</span>
+                            <span class="text-xs text-slate-500">Seoul & Busan</span>
+                        </div>
+                        <h3 class="text-2xl font-bold text-white mb-3 group-hover:text-blue-400 transition">K-Wanderlust (여행 가이드)</h3>
+                        <p class="text-slate-400 mb-6 leading-relaxed text-sm">
+                            트렌디한 서울과 바다의 도시 부산을 비교하고, AI 맞춤 일정 추천 및 교통 가이드(KTX, T-Money)를 제공하는 가이드 웹사이트입니다.
+                        </p>
+                        <ul class="space-y-2 text-sm text-slate-300 mb-6">
+                            <li class="flex items-center">📍 서울 vs 부산 핵심 명소 비교</li>
+                            <li class="flex items-center">🤖 AI 실시간 맞춤 여행 플래너</li>
+                        </ul>
+                    </div>
+                    <div class="px-8 pb-8 pt-0">
+                        <a href="https://nhuquyenprc-bit.github.io/travel/" target="_blank" class="block w-full bg-blue-600 hover:bg-blue-500 text-white font-medium text-center py-3 rounded-xl transition shadow-md shadow-blue-600/20">
+                            여행 페이지 바로가기 →
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Project 3: Restaurant -->
+                <div class="bg-slate-800 border border-slate-700/80 rounded-2xl overflow-hidden shadow-xl hover:border-emerald-500/50 transition flex flex-col justify-between group">
+                    <div class="p-8">
+                        <div class="flex items-center justify-between mb-4">
+                            <span class="bg-emerald-500/20 text-emerald-300 border border-emerald-500/30 text-xs font-bold px-3 py-1 rounded-full">F&B / Restaurant</span>
+                            <span class="text-xs text-slate-500">Vietnamese Kitchen</span>
+                        </div>
+                        <h3 class="text-2xl font-bold text-white mb-3 group-hover:text-emerald-400 transition">Xin Cảm Ơn (베트남 쌀국수)</h3>
+                        <p class="text-slate-400 mb-6 leading-relaxed text-sm">
+                            24시간 우려낸 사골 육수와 '나만의 DIY 쌀국수 조합' 기능, 온라인 테이블 예약 시스템을 담은 베트남 미식 전문 웹사이트입니다.
+                        </p>
+                        <ul class="space-y-2 text-sm text-slate-300 mb-6">
+                            <li class="flex items-center">🍜 나만의 맞춤형 DIY 쌀국수 커스텀</li>
+                            <li class="flex items-center">📅 실시간 온라인 테이블 예약</li>
+                        </ul>
+                    </div>
+                    <div class="px-8 pb-8 pt-0">
+                        <a href="https://nhuquyenprc-bit.github.io/vietnamrestaurant/" target="_blank" class="block w-full bg-emerald-600 hover:bg-emerald-500 text-white font-medium text-center py-3 rounded-xl transition shadow-md shadow-emerald-600/20">
+                            쌀국수 페이지 바로가기 →
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer id="contact" class="bg-slate-950 text-slate-400 py-12 border-t border-slate-900">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row items-center justify-between">
+            <div class="flex items-center space-x-3 mb-4 md:mb-0">
+                <div class="bg-purple-600 text-white font-bold p-2 rounded-lg text-sm">QH</div>
+                <span class="text-white font-semibold">Quyen's Personal Portal</span>
+            </div>
+            <p class="text-sm">© 2026 Quyen. All Rights Reserved. Powered by GitHub Pages.</p>
+            <div class="flex space-x-6 mt-4 md:mt-0 text-sm">
+                <a href="https://nhuquyenprc-bit.github.io/game/" target="_blank" class="hover:text-purple-400 transition">Game</a>
+                <a href="https://nhuquyenprc-bit.github.io/travel/" target="_blank" class="hover:text-blue-400 transition">Travel</a>
+                <a href="https://nhuquyenprc-bit.github.io/vietnamrestaurant/" target="_blank" class="hover:text-emerald-400 transition">Restaurant</a>
+            </div>
+        </div>
+    </footer>
+
+</body>
+</html>
