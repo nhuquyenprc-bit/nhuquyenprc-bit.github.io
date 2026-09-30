@@ -1,0 +1,1396 @@
+<!DOCTYPE html>
+<html lang="ko" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>씬깜온 (Xin Cảm Ơn) - 프리미엄 미식 베트남 요리</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&family=Playfair+Display:ital,wght@0,600;0,800;1,400&display=swap" rel="stylesheet">
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        vnGreen: '#0F3800',
+                        vnGreenLight: '#1d5e03',
+                        vnGold: '#FFB800',
+                        vnGoldHover: '#e0a200',
+                        vnRed: '#E63946',
+                        vnBg: '#FDFBF7',
+                        vnCardBg: '#FFFDF9',
+                    },
+                    fontFamily: {
+                        sans: ['"Noto Sans KR"', 'sans-serif'],
+                        serif: ['"Playfair Display"', 'serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            background-color: #FDFBF7;
+            color: #2b2b2b;
+            font-family: 'Noto Sans KR', sans-serif;
+            overflow-x: hidden;
+        }
+        .hero-pattern {
+            background-color: #0F3800;
+            background-image: radial-gradient(#FFB800 0.75px, transparent 0.75px), radial-gradient(#FFB800 0.75px, #0F3800 0.75px);
+            background-size: 30px 30px;
+            background-position: 0 0, 15px 15px;
+            opacity: 0.95;
+        }
+        .glass-panel {
+            background: rgba(253, 251, 247, 0.85);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+        }
+        .glass-dark {
+            background: rgba(15, 56, 0, 0.85);
+            backdrop-filter: blur(12px);
+        }
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 6px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: #FDFBF7;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: #FFB800;
+            border-radius: 10px;
+        }
+        .badge-spice {
+            display: inline-flex;
+            align-items: center;
+            gap: 2px;
+        }
+        @keyframes float {
+            0% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-10px) rotate(1deg); }
+            100% { transform: translateY(0px) rotate(0deg); }
+        }
+        .animate-float {
+            animation: float 5s ease-in-out infinite;
+        }
+    </style>
+</head>
+<body class="relative">
+
+    <header class="sticky top-0 z-40 transition-all duration-300 glass-panel border-b border-amber-900/10 shadow-sm" id="mainHeader">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+            <!-- Brand Logo -->
+            <a href="#" class="flex items-center gap-3 group">
+                <div class="w-11 h-11 rounded-full bg-vnGreen text-vnGold flex items-center justify-center text-xl shadow-md group-hover:scale-105 transition-transform">
+                    <i class="fa-solid fa-bowl-food"></i>
+                </div>
+                <div>
+                    <span class="block text-2xl font-black tracking-wider text-vnGreen font-serif">XIN CẢM ƠN</span>
+                    <span class="block text-[10px] tracking-widest text-amber-800 font-bold uppercase -mt-1">Vietnamese Kitchen & Bar</span>
+                </div>
+            </a>
+
+            <!-- Desktop Nav Items -->
+            <nav class="hidden md:flex items-center gap-8 font-medium text-amber-950">
+                <a href="#about" class="hover:text-vnGreen transition-colors py-1 hover:border-b-2 hover:border-vnGold">브랜드 소개</a>
+                <a href="#menu" class="hover:text-vnGreen transition-colors py-1 hover:border-b-2 hover:border-vnGold">메뉴 목록</a>
+                <a href="#customizer" class="hover:text-vnGreen transition-colors py-1 hover:border-b-2 hover:border-vnGold flex items-center gap-1.5 text-vnRed font-semibold">
+                    <i class="fa-solid fa-wand-magic-sparkles text-xs"></i> 나만의 쌀국수
+                </a>
+                <a href="#reservation" class="hover:text-vnGreen transition-colors py-1 hover:border-b-2 hover:border-vnGold">테이블 예약</a>
+                <a href="#guide" class="hover:text-vnGreen transition-colors py-1 hover:border-b-2 hover:border-vnGold">미식 가이드</a>
+                <a href="#location" class="hover:text-vnGreen transition-colors py-1 hover:border-b-2 hover:border-vnGold">매장 안내</a>
+            </nav>
+
+            <!-- Right Actions (Cart & Mobile Menu Button) -->
+            <div class="flex items-center gap-4">
+                <button onclick="toggleCartDrawer()" class="relative p-2.5 rounded-full bg-amber-100/80 hover:bg-amber-200 text-amber-900 transition-all cursor-pointer flex items-center justify-center">
+                    <i class="fa-solid fa-bag-shopping text-xl"></i>
+                    <span id="cartBadge" class="absolute -top-1 -right-1 bg-vnRed text-white text-xs font-bold rounded-full h-5 w-5 flex items-center justify-center scale-0 transition-transform">0</span>
+                </button>
+
+                <a href="#reservation" class="hidden sm:inline-flex items-center gap-2 bg-vnGreen hover:bg-vnGreenLight text-vnGold px-5 py-2.5 rounded-full font-bold shadow-md hover:shadow-lg transition-all text-sm">
+                    <i class="fa-regular fa-calendar-check"></i> 예약하기
+                </a>
+
+                <button onclick="toggleMobileNav()" class="md:hidden text-amber-900 p-2 text-2xl focus:outline-none">
+                    <i class="fa-solid fa-bars" id="mobileNavIcon"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- Mobile Navigation Menu -->
+        <div id="mobileMenu" class="hidden md:hidden border-t border-amber-900/10 bg-vnBg px-6 py-4 space-y-3 shadow-xl">
+            <a href="#about" onclick="toggleMobileNav()" class="block py-2 text-amber-900 font-medium border-b border-amber-900/5">브랜드 소개</a>
+            <a href="#menu" onclick="toggleMobileNav()" class="block py-2 text-amber-900 font-medium border-b border-amber-900/5">메뉴 목록</a>
+            <a href="#customizer" onclick="toggleMobileNav()" class="block py-2 text-vnRed font-bold border-b border-amber-900/5">나만의 쌀국수 만들기</a>
+            <a href="#reservation" onclick="toggleMobileNav()" class="block py-2 text-amber-900 font-medium border-b border-amber-900/5">테이블 예약</a>
+            <a href="#guide" onclick="toggleMobileNav()" class="block py-2 text-amber-900 font-medium border-b border-amber-900/5">미식 가이드</a>
+            <a href="#location" onclick="toggleMobileNav()" class="block py-2 text-amber-900 font-medium">매장 안내</a>
+        </div>
+    </header>
+
+    <section class="relative min-h-[calc(100vh-80px)] flex items-center hero-pattern text-white overflow-hidden py-16 lg:py-0">
+        <!-- Overlay Gradient -->
+        <div class="absolute inset-0 bg-gradient-to-r from-vnGreen/95 via-vnGreen/80 to-transparent z-0"></div>
+        
+        <!-- Decorative Ambient Light -->
+        <div class="absolute -top-32 -right-32 w-96 h-96 bg-vnGold/20 rounded-full blur-3xl pointer-events-none"></div>
+        <div class="absolute bottom-0 left-1/4 w-80 h-80 bg-vnRed/20 rounded-full blur-3xl pointer-events-none"></div>
+
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+            
+            <!-- Hero Left Content -->
+            <div class="lg:col-span-7 space-y-6 text-center lg:text-left">
+                <div class="inline-flex items-center gap-2 bg-vnGold/20 border border-vnGold/40 px-4 py-1.5 rounded-full text-vnGold text-xs sm:text-sm font-semibold tracking-wider uppercase">
+                    <i class="fa-solid fa-star text-xs"></i> 24시간 깊게 우려낸 정통 프리미엄 육수
+                </div>
+                
+                <h1 class="text-4xl sm:text-5xl lg:text-6xl font-black font-serif leading-tight text-white">
+                    하노이 골목의 깊은 풍미,<br>
+                    <span class="text-vnGold italic font-normal">Xin Cảm Ơn</span>에서 느끼다
+                </h1>
+
+                <p class="text-emerald-100 text-base sm:text-lg max-w-2xl font-light leading-relaxed mx-auto lg:mx-0">
+                    매일 아침 도착하는 신선한 베트남 허브와 100% 양지·사골을 진하게 우려낸 깊은 육수. 정성스럽게 구워낸 오리지널 바게트 반미와 참숯으로 구운 분짜까지, 베트남 현지의 맛을 가장 완벽하게 선사합니다.
+                </p>
+
+                <div class="pt-4 flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4">
+                    <a href="#menu" class="w-full sm:w-auto bg-vnGold hover:bg-vnGoldHover text-amber-950 font-bold px-8 py-4 rounded-full shadow-lg hover:shadow-xl hover:-translate-y-0.5 transition-all text-center flex items-center justify-center gap-2">
+                        <i class="fa-solid fa-utensils"></i> 메뉴 둘러보기
+                    </a>
+                    <a href="#customizer" class="w-full sm:w-auto bg-white/10 hover:bg-white/20 text-white border border-white/30 font-semibold px-8 py-4 rounded-full transition-all text-center flex items-center justify-center gap-2 backdrop-blur-sm">
+                        <i class="fa-solid fa-sliders"></i> 나만의 DIY 쌀국수
+                    </a>
+                </div>
+
+                <!-- Hero Features Badge -->
+                <div class="pt-8 border-t border-emerald-800/60 grid grid-cols-3 gap-4 text-center lg:text-left">
+                    <div>
+                        <div class="text-2xl font-bold text-vnGold font-serif">100%</div>
+                        <div class="text-xs text-emerald-200 mt-1">현지 직송 향신 채소</div>
+                    </div>
+                    <div>
+                        <div class="text-2xl font-bold text-vnGold font-serif">24 Hours</div>
+                        <div class="text-xs text-emerald-200 mt-1">사골 진국 육수 추출</div>
+                    </div>
+                    <div>
+                        <div class="text-2xl font-bold text-vnGold font-serif">Daily Fresh</div>
+                        <div class="text-xs text-emerald-200 mt-1">매일 직접 굽는 반미</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Hero Right Visual -->
+            <div class="lg:col-span-5 relative flex justify-center">
+                <div class="relative w-72 h-72 sm:w-96 sm:h-96 lg:w-[420px] lg:h-[420px]">
+                    <!-- Golden Decorative Ring -->
+                    <div class="absolute inset-0 rounded-full border-2 border-dashed border-vnGold/40 animate-[spin_60s_linear_infinite]"></div>
+                    
+                    <!-- Main Hero Image Showcase -->
+                    <div class="w-full h-full rounded-full overflow-hidden shadow-2xl border-8 border-white/10 animate-float relative">
+                        <img src="https://images.unsplash.com/photo-1582878826629-29b7ad1cdc43?auto=format&fit=crop&w=800&q=80" 
+                             alt="베트남 정통 쌀국수" 
+                             class="w-full h-full object-cover"
+                             onerror="this.src='https://placehold.co/800x800/0F3800/FFB800?text=Pho+Noodle'">
+                    </div>
+
+                    <!-- Floating Badge Card 1 -->
+                    <div class="absolute -bottom-2 -left-4 sm:left-0 bg-vnCardBg text-amber-950 p-3.5 rounded-2xl shadow-2xl border border-amber-900/10 flex items-center gap-3 backdrop-blur-md">
+                        <div class="w-10 h-10 rounded-xl bg-vnRed/10 text-vnRed flex items-center justify-center text-xl">
+                            <i class="fa-solid fa-fire-flame-curved"></i>
+                        </div>
+                        <div>
+                            <p class="text-xs text-gray-500 font-medium">인기 최다 선택</p>
+                            <p class="text-sm font-bold text-amber-950">차돌 양지 쌀국수</p>
+                        </div>
+                    </div>
+
+                    <!-- Floating Badge Card 2 -->
+                    <div class="absolute top-6 -right-4 sm:right-0 bg-vnCardBg text-amber-950 p-3 rounded-2xl shadow-2xl border border-amber-900/10 flex items-center gap-3">
+                        <div class="w-10 h-10 rounded-xl bg-amber-100 text-amber-800 flex items-center justify-center text-xl">
+                            <i class="fa-solid fa-leaf"></i>
+                        </div>
+                        <div>
+                            <p class="text-xs text-gray-500 font-medium">100% 신선함</p>
+                            <p class="text-sm font-bold text-amber-950">생 고수 & 바질 제공</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <section id="menu" class="py-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center max-w-3xl mx-auto mb-12">
+            <span class="text-vnRed font-bold text-sm uppercase tracking-widest block mb-2">Xin Cảm Ơn Menu</span>
+            <h2 class="text-3xl sm:text-4xl font-bold font-serif text-amber-950">베트남 정통 미식 메뉴</h2>
+            <p class="text-gray-600 mt-3 text-sm sm:text-base">원하시는 메뉴를 찾아보거나, 취향에 맞는 매운맛 필터를 선택해 보세요.</p>
+        </div>
+
+        <!-- Search and Filter Bar -->
+        <div class="flex flex-col md:flex-row items-center justify-between gap-4 mb-10">
+            <!-- Filter Categories -->
+            <div class="flex flex-wrap items-center justify-center gap-2 w-full md:w-auto" id="categoryButtons">
+                <button onclick="filterMenu('all')" class="cat-btn active px-5 py-2.5 rounded-full text-sm font-bold transition-all bg-vnGreen text-vnGold shadow-md" data-category="all">
+                    전체보기
+                </button>
+                <button onclick="filterMenu('pho')" class="cat-btn px-5 py-2.5 rounded-full text-sm font-medium transition-all bg-white text-gray-700 border border-amber-900/10 hover:bg-amber-50" data-category="pho">
+                    🍜 Pho (쌀국수)
+                </button>
+                <button onclick="filterMenu('banhmi')" class="cat-btn px-5 py-2.5 rounded-full text-sm font-medium transition-all bg-white text-gray-700 border border-amber-900/10 hover:bg-amber-50" data-category="banhmi">
+                    🥖 Banh Mi (반미)
+                </button>
+                <button onclick="filterMenu('buncha')" class="cat-btn px-5 py-2.5 rounded-full text-sm font-medium transition-all bg-white text-gray-700 border border-amber-900/10 hover:bg-amber-50" data-category="buncha">
+                    🥗 Bun Cha & Rice (분짜/덮밥)
+                </button>
+                <button onclick="filterMenu('side')" class="cat-btn px-5 py-2.5 rounded-full text-sm font-medium transition-all bg-white text-gray-700 border border-amber-900/10 hover:bg-amber-50" data-category="side">
+                    🥤 Side & Drink (사이드/음료)
+                </button>
+            </div>
+
+            <!-- Search Input -->
+            <div class="relative w-full md:w-72">
+                <input type="text" id="menuSearchInput" onkeyup="searchMenu()" placeholder="메뉴명 또는 재료 검색..." 
+                       class="w-full pl-10 pr-4 py-2.5 rounded-full bg-white border border-amber-900/15 focus:outline-none focus:border-vnGreen text-sm text-gray-800 shadow-sm">
+                <i class="fa-solid fa-magnifying-glass absolute left-3.5 top-3 text-gray-400 text-sm"></i>
+            </div>
+        </div>
+
+        <!-- Menu Items Grid -->
+        <div id="menuGrid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+            <!-- Dynamically Rendered via JS -->
+        </div>
+
+        <!-- Empty State Message -->
+        <div id="emptyMenuState" class="hidden text-center py-16">
+            <div class="text-5xl text-gray-300 mb-4"><i class="fa-regular fa-face-frown"></i></div>
+            <h3 class="text-lg font-bold text-gray-700">검색 조건에 맞는 메뉴가 없습니다.</h3>
+            <p class="text-sm text-gray-500 mt-1">다른 검색어를 입력하시거나 카테고리를 변경해 보세요.</p>
+        </div>
+    </section>
+
+    <section id="customizer" class="py-20 bg-emerald-950 text-white relative overflow-hidden">
+        <!-- Background Blur Lights -->
+        <div class="absolute -top-40 -left-40 w-96 h-96 bg-vnGold/10 rounded-full blur-3xl pointer-events-none"></div>
+        <div class="absolute bottom-0 right-0 w-96 h-96 bg-vnRed/10 rounded-full blur-3xl pointer-events-none"></div>
+
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="text-center max-w-3xl mx-auto mb-14">
+                <span class="text-vnGold font-bold text-sm uppercase tracking-widest block mb-2">Build Your Own Pho</span>
+                <h2 class="text-3xl sm:text-4xl font-bold font-serif text-white">나만의 DIY 쌀국수 만들기</h2>
+                <p class="text-emerald-200 mt-3 text-sm sm:text-base">육수부터 고기 부위, 허브, 맵기 단계까지 내 취향대로 나만의 맞춤형 쌀국수를 조합해 보세요!</p>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+                <!-- Customizer Options Form -->
+                <div class="lg:col-span-7 bg-emerald-900/60 border border-emerald-700/50 rounded-3xl p-6 sm:p-8 backdrop-blur-md space-y-6">
+                    
+                    <!-- Step 1: Broth Selection -->
+                    <div>
+                        <label class="block text-xs font-bold uppercase tracking-wider text-vnGold mb-3">
+                            1. 육수 선택 (Choose Broth)
+                        </label>
+                        <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
+                            <label class="custom-radio border border-emerald-700 rounded-2xl p-3.5 cursor-pointer hover:border-vnGold transition-all block">
+                                <input type="radio" name="custBroth" value="정통 진한 사골 육수" data-price="0" checked onchange="updateCustomizer()" class="hidden">
+                                <div class="font-bold text-sm text-white flex items-center justify-between">
+                                    <span>정통 진한 사골</span>
+                                    <i class="fa-solid fa-circle-check text-vnGold text-xs radio-icon"></i>
+                                </div>
+                                <p class="text-xs text-emerald-300 mt-1">24시간 우려낸 깊고 구수한 맛</p>
+                            </label>
+
+                            <label class="custom-radio border border-emerald-700 rounded-2xl p-3.5 cursor-pointer hover:border-vnGold transition-all block">
+                                <input type="radio" name="custBroth" value="매콤 얼큰 육수 (Bún Bò)" data-price="500" onchange="updateCustomizer()" class="hidden">
+                                <div class="font-bold text-sm text-white flex items-center justify-between">
+                                    <span>매콤 분보 육수</span>
+                                    <i class="fa-solid fa-circle-check text-vnGold text-xs radio-icon hidden"></i>
+                                </div>
+                                <p class="text-xs text-emerald-300 mt-1">레몬그라스와 고추기름의 감칠맛 (+500원)</p>
+                            </label>
+
+                            <label class="custom-radio border border-emerald-700 rounded-2xl p-3.5 cursor-pointer hover:border-vnGold transition-all block">
+                                <input type="radio" name="custBroth" value="비건 야채 육수" data-price="0" onchange="updateCustomizer()" class="hidden">
+                                <div class="font-bold text-sm text-white flex items-center justify-between">
+                                    <span>맑은 채수 (비건)</span>
+                                    <i class="fa-solid fa-circle-check text-vnGold text-xs radio-icon hidden"></i>
+                                </div>
+                                <p class="text-xs text-emerald-300 mt-1">각종 버섯과 무로 만든 깔끔함</p>
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- Step 2: Meat Toppings -->
+                    <div>
+                        <label class="block text-xs font-bold uppercase tracking-wider text-vnGold mb-3">
+                            2. 토핑 선택 (Meat & Toppings - 중복 선택 가능)
+                        </label>
+                        <div class="grid grid-cols-2 sm:grid-cols-4 gap-3">
+                            <label class="border border-emerald-700 rounded-xl p-3 cursor-pointer hover:border-vnGold transition-all block bg-emerald-950/40">
+                                <input type="checkbox" name="custMeat" value="차돌박이" data-price="2000" checked onchange="updateCustomizer()" class="accent-vnGold">
+                                <span class="text-sm font-semibold ml-1.5 text-white">차돌박이</span>
+                                <span class="block text-[11px] text-emerald-400 mt-0.5">+2,000원</span>
+                            </label>
+
+                            <label class="border border-emerald-700 rounded-xl p-3 cursor-pointer hover:border-vnGold transition-all block bg-emerald-950/40">
+                                <input type="checkbox" name="custMeat" value="양지살" data-price="2000" checked onchange="updateCustomizer()" class="accent-vnGold">
+                                <span class="text-sm font-semibold ml-1.5 text-white">부드러운 양지</span>
+                                <span class="block text-[11px] text-emerald-400 mt-0.5">+2,000원</span>
+                            </label>
+
+                            <label class="border border-emerald-700 rounded-xl p-3 cursor-pointer hover:border-vnGold transition-all block bg-emerald-950/40">
+                                <input type="checkbox" name="custMeat" value="소꼬리/도가니" data-price="3500" onchange="updateCustomizer()" class="accent-vnGold">
+                                <span class="text-sm font-semibold ml-1.5 text-white">도가니/스지</span>
+                                <span class="block text-[11px] text-emerald-400 mt-0.5">+3,500원</span>
+                            </label>
+
+                            <label class="border border-emerald-700 rounded-xl p-3 cursor-pointer hover:border-vnGold transition-all block bg-emerald-950/40">
+                                <input type="checkbox" name="custMeat" value="수제 피시볼" data-price="1500" onchange="updateCustomizer()" class="accent-vnGold">
+                                <span class="text-sm font-semibold ml-1.5 text-white">수제 피시볼</span>
+                                <span class="block text-[11px] text-emerald-400 mt-0.5">+1,500원</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- Step 3: Herb & Spice Controls -->
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 pt-2">
+                        <div>
+                            <label class="block text-xs font-bold uppercase tracking-wider text-vnGold mb-2">
+                                3. 고수(Cilantro) 양
+                            </label>
+                            <select id="custHerb" onchange="updateCustomizer()" class="w-full bg-emerald-950 border border-emerald-700 rounded-xl px-4 py-2.5 text-sm text-white focus:outline-none focus:border-vnGold">
+                                <option value="고수 빼기 (No Cilantro)">고수 빼기 (전혀 없음)</option>
+                                <option value="고수 보통 (기본)" selected>고수 보통 (적당함)</option>
+                                <option value="고수 많이 (Herb Lover)">고수 많이 (듬뿍)</option>
+                                <option value="생고수 따로 제공">고수 접시 따로 제공</option>
+                            </select>
+                        </div>
+
+                        <div>
+                            <label class="block text-xs font-bold uppercase tracking-wider text-vnGold mb-2">
+                                4. 맵기 선택 (Spiciness Level)
+                            </label>
+                            <select id="custSpice" onchange="updateCustomizer()" class="w-full bg-emerald-950 border border-emerald-700 rounded-xl px-4 py-2.5 text-sm text-white focus:outline-none focus:border-vnGold">
+                                <option value="0단계 (순한맛 - 아이도 가능)">0단계 - 순한맛 (전혀 안매움)</option>
+                                <option value="1단계 (신라면 정도)" selected>1단계 - 기본 매콤 (베트남 고추 약간)</option>
+                                <option value="2단계 (불닭 수준)">2단계 - 매니아층 추천 (얼큰함)</option>
+                                <option value="3단계 (극강 매운맛)">3단계 - 극강 핫스파이시 🌶️🌶️</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <!-- Step 4: Extra Options -->
+                    <div>
+                        <label class="block text-xs font-bold uppercase tracking-wider text-vnGold mb-2">
+                            5. 면 및 면사리 옵션
+                        </label>
+                        <div class="flex items-center gap-6 text-sm text-emerald-100">
+                            <label class="flex items-center gap-2 cursor-pointer">
+                                <input type="radio" name="custNoodle" value="생면 (부드러운 식감)" checked onchange="updateCustomizer()" class="accent-vnGold">
+                                <span>생면 사용 (기본)</span>
+                            </label>
+                            <label class="flex items-center gap-2 cursor-pointer">
+                                <input type="radio" name="custNoodle" value="건면 (쫄깃한 식감)" onchange="updateCustomizer()" class="accent-vnGold">
+                                <span>건면 변경</span>
+                            </label>
+                            <label class="flex items-center gap-2 cursor-pointer">
+                                <input type="checkbox" id="custExtraNoodle" onchange="updateCustomizer()" class="accent-vnGold">
+                                <span>면 사리 추가 (+1,000원)</span>
+                            </label>
+                        </div>
+                    </div>
+
+                </div>
+
+                <!-- Customizer Realtime Preview & Order Card -->
+                <div class="lg:col-span-5 bg-vnCardBg text-amber-950 rounded-3xl p-6 sm:p-8 shadow-2xl border border-amber-900/10">
+                    <div class="flex items-center justify-between border-b border-amber-900/10 pb-4 mb-4">
+                        <h3 class="font-bold text-xl font-serif text-amber-950">나만의 맞춤 쌀국수</h3>
+                        <span class="bg-vnGold/20 text-amber-900 font-bold text-xs px-3 py-1 rounded-full">Custom Order</span>
+                    </div>
+
+                    <div class="space-y-4 text-sm mb-6">
+                        <div class="flex justify-between items-center text-gray-600">
+                            <span>기본 쌀국수 베이스</span>
+                            <span class="font-medium">9,500 원</span>
+                        </div>
+
+                        <div class="space-y-2 bg-amber-50/70 p-4 rounded-2xl border border-amber-900/5">
+                            <div class="text-xs font-bold text-amber-900 uppercase tracking-wider mb-2">선택한 조합 요약</div>
+                            <div id="previewBroth" class="flex justify-between text-xs text-amber-950">
+                                <span class="text-gray-500">육수:</span>
+                                <span class="font-semibold">정통 진한 사골</span>
+                            </div>
+                            <div id="previewMeat" class="flex justify-between text-xs text-amber-950">
+                                <span class="text-gray-500">토핑:</span>
+                                <span class="font-semibold">차돌박이, 양지살</span>
+                            </div>
+                            <div id="previewHerb" class="flex justify-between text-xs text-amber-950">
+                                <span class="text-gray-500">고수:</span>
+                                <span class="font-semibold">고수 보통</span>
+                            </div>
+                            <div id="previewSpice" class="flex justify-between text-xs text-amber-950">
+                                <span class="text-gray-500">맵기:</span>
+                                <span class="font-semibold">1단계</span>
+                            </div>
+                            <div id="previewNoodle" class="flex justify-between text-xs text-amber-950">
+                                <span class="text-gray-500">면 종류:</span>
+                                <span class="font-semibold">생면</span>
+                            </div>
+                        </div>
+
+                        <div class="pt-2 flex justify-between items-baseline border-t border-amber-900/10">
+                            <span class="text-base font-bold text-amber-950">총 맞춤 가격</span>
+                            <span id="customTotalPrice" class="text-2xl font-extrabold text-vnRed">13,500 원</span>
+                        </div>
+                    </div>
+
+                    <button onclick="addCustomToCart()" class="w-full bg-vnGreen hover:bg-vnGreenLight text-vnGold font-bold py-4 rounded-2xl shadow-lg transition-all flex items-center justify-center gap-2 text-base cursor-pointer">
+                        <i class="fa-solid fa-cart-plus"></i> 나만의 쌀국수 장바구니 담기
+                    </button>
+                    <p class="text-[11px] text-center text-gray-500 mt-3">매장에서 주방에 즉시 전달되어 신선하게 조리됩니다.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="reservation" class="py-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="bg-amber-100/50 rounded-3xl p-6 sm:p-12 border border-amber-900/10 shadow-sm grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
+            
+            <div class="lg:col-span-5 space-y-4">
+                <span class="text-vnRed font-bold text-xs uppercase tracking-widest block">Book A Table</span>
+                <h2 class="text-3xl sm:text-4xl font-bold font-serif text-amber-950">온라인 테이블 예약</h2>
+                <p class="text-gray-600 text-sm leading-relaxed">
+                    특별한 모임이나 가족 식사를 더욱 편안하게 즐기세요. 예약을 완료하시면 확인 문자메시지가 발송되며, 베트남 현지 스타일의 맞춤 테이블 세팅을 준비해 드립니다.
+                </p>
+
+                <div class="space-y-3 pt-4">
+                    <div class="flex items-center gap-3 text-sm text-amber-900">
+                        <div class="w-8 h-8 rounded-full bg-vnGreen/10 text-vnGreen flex items-center justify-center">
+                            <i class="fa-solid fa-clock"></i>
+                        </div>
+                        <span>운영시간: 매일 11:00 - 22:00 (라스트 오더 21:00)</span>
+                    </div>
+                    <div class="flex items-center gap-3 text-sm text-amber-900">
+                        <div class="w-8 h-8 rounded-full bg-vnGreen/10 text-vnGreen flex items-center justify-center">
+                            <i class="fa-solid fa-users"></i>
+                        </div>
+                        <span>단체 예약 가능 (8인 이상 시 사전 전화 문의)</span>
+                    </div>
+                    <div class="flex items-center gap-3 text-sm text-amber-900">
+                        <div class="w-8 h-8 rounded-full bg-vnGreen/10 text-vnGreen flex items-center justify-center">
+                            <i class="fa-solid fa-phone"></i>
+                        </div>
+                        <span>예약 문의: 02-555-7890</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Reservation Form Card -->
+            <div class="lg:col-span-7 bg-white p-6 sm:p-8 rounded-3xl shadow-xl border border-amber-900/10">
+                <form id="reservationForm" onsubmit="handleReservationSubmit(event)" class="space-y-4">
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                        <div>
+                            <label class="block text-xs font-bold text-gray-700 uppercase tracking-wider mb-1.5">성함</label>
+                            <input type="text" id="resName" required placeholder="예약자 성함" 
+                                   class="w-full bg-gray-50 border border-gray-200 rounded-xl px-4 py-3 text-sm text-gray-800 focus:outline-none focus:border-vnGreen">
+                        </div>
+                        <div>
+                            <label class="block text-xs font-bold text-gray-700 uppercase tracking-wider mb-1.5">연락처</label>
+                            <input type="tel" id="resPhone" required placeholder="010-0000-0000" 
+                                   class="w-full bg-gray-50 border border-gray-200 rounded-xl px-4 py-3 text-sm text-gray-800 focus:outline-none focus:border-vnGreen">
+                        </div>
+                    </div>
+
+                    <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+                        <div>
+                            <label class="block text-xs font-bold text-gray-700 uppercase tracking-wider mb-1.5">예약 날짜</label>
+                            <input type="date" id="resDate" required 
+                                   class="w-full bg-gray-50 border border-gray-200 rounded-xl px-4 py-3 text-sm text-gray-800 focus:outline-none focus:border-vnGreen">
+                        </div>
+                        <div>
+                            <label class="block text-xs font-bold text-gray-700 uppercase tracking-wider mb-1.5">시간</label>
+                            <select id="resTime" required class="w-full bg-gray-50 border border-gray-200 rounded-xl px-4 py-3 text-sm text-gray-800 focus:outline-none focus:border-vnGreen">
+                                <option value="11:30">11:30 (점심)</option>
+                                <option value="12:00">12:00 (점심)</option>
+                                <option value="12:30">12:30 (점심)</option>
+                                <option value="13:00">13:00 (점심)</option>
+                                <option value="17:30">17:30 (저녁)</option>
+                                <option value="18:00" selected>18:00 (저녁)</option>
+                                <option value="18:30">18:30 (저녁)</option>
+                                <option value="19:00">19:00 (저녁)</option>
+                                <option value="19:30">19:30 (저녁)</option>
+                                <option value="20:00">20:00 (저녁)</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label class="block text-xs font-bold text-gray-700 uppercase tracking-wider mb-1.5">방문 인원</label>
+                            <select id="resGuests" required class="w-full bg-gray-50 border border-gray-200 rounded-xl px-4 py-3 text-sm text-gray-800 focus:outline-none focus:border-vnGreen">
+                                <option value="1명">1명 (혼밥)</option>
+                                <option value="2명" selected>2명</option>
+                                <option value="3명">3명</option>
+                                <option value="4명">4명</option>
+                                <option value="5명">5명</option>
+                                <option value="6명">6명</option>
+                                <option value="7인 이상">7인 이상 (비고 기재)</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div>
+                        <label class="block text-xs font-bold text-gray-700 uppercase tracking-wider mb-1.5">특별 요청사항 (선택)</label>
+                        <textarea id="resNotes" rows="2" placeholder="아기 의자 필요, 창가 자석 희망 등 요청사항을 남겨주세요." 
+                                  class="w-full bg-gray-50 border border-gray-200 rounded-xl px-4 py-2.5 text-sm text-gray-800 focus:outline-none focus:border-vnGreen resize-none"></textarea>
+                    </div>
+
+                    <button type="submit" class="w-full bg-vnGreen hover:bg-vnGreenLight text-vnGold font-bold py-3.5 rounded-xl shadow-md transition-all text-base cursor-pointer">
+                        실시간 예약 확정하기
+                    </button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <section id="guide" class="py-20 bg-amber-50/60 border-y border-amber-900/10">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-12">
+                <span class="text-vnGreen font-bold text-sm uppercase tracking-widest block mb-2">Vietnamese Culinary Culture</span>
+                <h2 class="text-3xl sm:text-4xl font-bold font-serif text-amber-950">베트남 미식 이야기</h2>
+                <p class="text-gray-600 mt-2 text-sm sm:text-base">씬깜온이 지켜가는 정통 미식 문화와 재료에 담긴 비하인드 스토리입니다.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Guide Card 1 -->
+                <div class="bg-white rounded-3xl overflow-hidden shadow-md border border-amber-900/10 hover:shadow-xl transition-all group">
+                    <div class="h-48 overflow-hidden relative">
+                        <img src="https://images.unsplash.com/photo-1541832676-9b763b0239ab?auto=format&fit=crop&w=600&q=80" 
+                             alt="베트남 허브" 
+                             class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                             onerror="this.src='https://placehold.co/600x400/0F3800/FFB800?text=Herbs'">
+                        <span class="absolute top-4 left-4 bg-vnGreen text-vnGold text-xs font-bold px-3 py-1 rounded-full">신선 재료</span>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="font-bold text-lg text-amber-950 mb-2 font-serif group-hover:text-vnGreen transition-colors">
+                            고수와 타이 바질의 미식 매력
+                        </h3>
+                        <p class="text-gray-600 text-xs sm:text-sm leading-relaxed">
+                            베트남 음식에서 향신채소는 단순한 가니시가 아닌 맛의 균형을 완성하는 핵심 요소입니다. 씬깜온은 당일 유기농 농가에서 배송되는 신선한 고수와 타이바질만 사용합니다.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Guide Card 2 -->
+                <div class="bg-white rounded-3xl overflow-hidden shadow-md border border-amber-900/10 hover:shadow-xl transition-all group">
+                    <div class="h-48 overflow-hidden relative">
+                        <img src="https://images.unsplash.com/photo-1582878826629-29b7ad1cdc43?auto=format&fit=crop&w=600&q=80" 
+                             alt="Pho Broth History" 
+                             class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                             onerror="this.src='https://placehold.co/600x400/0F3800/FFB800?text=Pho+Broth'">
+                        <span class="absolute top-4 left-4 bg-vnRed text-white text-xs font-bold px-3 py-1 rounded-full">육수의 비밀</span>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="font-bold text-lg text-amber-950 mb-2 font-serif group-hover:text-vnGreen transition-colors">
+                            24시간 우려내는 사골 육수의 인고
+                        </h3>
+                        <p class="text-gray-600 text-xs sm:text-sm leading-relaxed">
+                            하노이 전통 방식 그대로, 100% 소사골과 차돌 양지, 구운 팔각과 정향, 계피를 넣어 24시간 동안 정성으로 불순물을 거둬내며 진하고 깊은 육수를 완성합니다.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Guide Card 3 -->
+                <div class="bg-white rounded-3xl overflow-hidden shadow-md border border-amber-900/10 hover:shadow-xl transition-all group">
+                    <div class="h-48 overflow-hidden relative">
+                        <img src="https://images.unsplash.com/photo-1626804475297-4160820cca34?auto=format&fit=crop&w=600&q=80" 
+                             alt="Banh Mi History" 
+                             class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                             onerror="this.src='https://placehold.co/600x400/0F3800/FFB800?text=Banh+Mi'">
+                        <span class="absolute top-4 left-4 bg-vnGold text-amber-950 text-xs font-bold px-3 py-1 rounded-full">스트리트 푸드</span>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="font-bold text-lg text-amber-950 mb-2 font-serif group-hover:text-vnGreen transition-colors">
+                            겉바속촉 쌀 바게트 '반미' 이야기
+                        </h3>
+                        <p class="text-gray-600 text-xs sm:text-sm leading-relaxed">
+                            프랑스의 바게트와 베트남 쌀문화가 결합하여 탄생한 반미. 공기층이 촘촘한 베트남 특유의 쌀가루 바게트에 직접 만든 파테와 특제 드레싱을 채워 제공합니다.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="location" class="py-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center max-w-3xl mx-auto mb-12">
+            <span class="text-vnRed font-bold text-sm uppercase tracking-widest block mb-2">Location & Delivery</span>
+            <h2 class="text-3xl sm:text-4xl font-bold font-serif text-amber-950">매장 위치 및 배달 서비스</h2>
+            <p class="text-gray-600 mt-2 text-sm sm:text-base">씬깜온 본점 매장에서 직접 드시거나 배달 앱을 통해 집에서도 현지의 맛을 즐겨보세요.</p>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+            <!-- Map Placeholder / Interactive Styling -->
+            <div class="lg:col-span-7 bg-amber-100 rounded-3xl h-80 sm:h-96 relative overflow-hidden shadow-inner border border-amber-900/10 flex items-center justify-center">
+                <!-- Stylized Mock Map View -->
+                <div class="absolute inset-0 bg-emerald-900/5 flex flex-col items-center justify-center p-6 text-center">
+                    <div class="w-16 h-16 rounded-full bg-vnRed text-white flex items-center justify-center text-2xl shadow-lg mb-3 animate-bounce">
+                        <i class="fa-solid fa-location-dot"></i>
+                    </div>
+                    <h3 class="font-bold text-amber-950 text-lg">씬깜온 강남본점</h3>
+                    <p class="text-gray-600 text-xs sm:text-sm mt-1 max-w-sm">서울특별시 강남구 테헤란로 123 씬깜온 빌딩 1층 (강남역 11번 출구 도보 3분)</p>
+                    <div class="mt-4 flex gap-2">
+                        <button onclick="alert('카카오맵으로 매장 위치를 연결합니다.')" class="bg-amber-900 hover:bg-amber-950 text-white text-xs px-4 py-2 rounded-full transition-all">
+                            카카오맵 길찾기
+                        </button>
+                        <button onclick="alert('네이버지도로 매장 위치를 연결합니다.')" class="bg-emerald-600 hover:bg-emerald-700 text-white text-xs px-4 py-2 rounded-full transition-all">
+                            네이버지도 길찾기
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Store Details & Delivery Buttons -->
+            <div class="lg:col-span-5 space-y-6">
+                <div class="bg-white p-6 rounded-3xl border border-amber-900/10 shadow-sm space-y-4">
+                    <h3 class="font-bold text-xl text-amber-950 font-serif border-b border-gray-100 pb-3">매장 방문 정보</h3>
+                    
+                    <div class="space-y-3 text-sm text-gray-700">
+                        <div class="flex items-start gap-3">
+                            <i class="fa-solid fa-map-pin text-vnRed mt-1"></i>
+                            <div>
+                                <span class="font-bold block text-amber-950">주소</span>
+                                서울특별시 강남구 테헤란로 123 씬깜온 본점
+                            </div>
+                        </div>
+
+                        <div class="flex items-start gap-3">
+                            <i class="fa-solid fa-clock text-vnGreen mt-1"></i>
+                            <div>
+                                <span class="font-bold block text-amber-950">영업 시간</span>
+                                매일 11:00 - 22:00 (브레이크타임 15:00 - 17:00)<br>
+                                <span class="text-xs text-vnRed font-semibold">* 연중무휴 정상 영업</span>
+                            </div>
+                        </div>
+
+                        <div class="flex items-start gap-3">
+                            <i class="fa-solid fa-square-parking text-amber-700 mt-1"></i>
+                            <div>
+                                <span class="font-bold block text-amber-950">주차 안내</span>
+                                건물 지하 주차장 2시간 무료 이용 가능
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Delivery App Links -->
+                <div class="bg-amber-100/50 p-6 rounded-3xl border border-amber-900/10 text-center">
+                    <span class="text-xs font-bold text-amber-900 uppercase tracking-wider block mb-3">배달 주문하기</span>
+                    <div class="grid grid-cols-2 gap-3">
+                        <a href="javascript:void(0)" onclick="alert('배달의민족 앱으로 이동합니다.')" class="bg-teal-500 hover:bg-teal-600 text-white font-bold py-3 rounded-2xl shadow transition-all flex items-center justify-center gap-2 text-sm">
+                            <i class="fa-solid fa-motorcycle"></i> 배달의민족
+                        </a>
+                        <a href="javascript:void(0)" onclick="alert('쿠팡이츠 앱으로 이동합니다.')" class="bg-sky-500 hover:bg-sky-600 text-white font-bold py-3 rounded-2xl shadow transition-all flex items-center justify-center gap-2 text-sm">
+                            <i class="fa-solid fa-bolt"></i> 쿠팡이츠
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="bg-vnGreen text-white border-t border-emerald-800 pt-16 pb-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 md:grid-cols-4 gap-10 pb-12 border-b border-emerald-800/60">
+            <div class="space-y-4 md:col-span-1">
+                <div class="flex items-center gap-3">
+                    <div class="w-10 h-10 rounded-full bg-vnGold text-amber-950 flex items-center justify-center text-xl font-bold">
+                        <i class="fa-solid fa-bowl-food"></i>
+                    </div>
+                    <span class="text-2xl font-black font-serif text-vnGold tracking-wider">XIN CẢM ƠN</span>
+                </div>
+                <p class="text-emerald-200 text-xs leading-relaxed">
+                    정통 하노이 방식 그대로 끓여내는 최고의 베트남 미식 경험. 씬깜온은 언제나 고객님의 소중한 식사를 생각합니다.
+                </p>
+            </div>
+
+            <div>
+                <h4 class="font-bold text-vnGold text-sm uppercase tracking-wider mb-4">빠른 바로가기</h4>
+                <ul class="space-y-2 text-xs text-emerald-200">
+                    <li><a href="#about" class="hover:text-white transition-colors">브랜드 이야기</a></li>
+                    <li><a href="#menu" class="hover:text-white transition-colors">대표 메뉴 목록</a></li>
+                    <li><a href="#customizer" class="hover:text-white transition-colors">DIY 쌀국수 조합하기</a></li>
+                    <li><a href="#reservation" class="hover:text-white transition-colors">온라인 테이블 예약</a></li>
+                </ul>
+            </div>
+
+            <div>
+                <h4 class="font-bold text-vnGold text-sm uppercase tracking-wider mb-4">고객 센터 & 문의</h4>
+                <p class="text-xs text-emerald-200 leading-relaxed">
+                    전화번호: 02-555-7890<br>
+                    이메일: contact@xincamon.co.kr<br>
+                    가맹 문의: 1588-0000
+                </p>
+            </div>
+
+            <div>
+                <h4 class="font-bold text-vnGold text-sm uppercase tracking-wider mb-4">소셜 미디어</h4>
+                <div class="flex gap-3">
+                    <a href="#" class="w-9 h-9 rounded-full bg-emerald-900 hover:bg-vnGold hover:text-amber-950 flex items-center justify-center text-emerald-200 transition-all">
+                        <i class="fa-brands fa-instagram"></i>
+                    </a>
+                    <a href="#" class="w-9 h-9 rounded-full bg-emerald-900 hover:bg-vnGold hover:text-amber-950 flex items-center justify-center text-emerald-200 transition-all">
+                        <i class="fa-brands fa-facebook-f"></i>
+                    </a>
+                    <a href="#" class="w-9 h-9 rounded-full bg-emerald-900 hover:bg-vnGold hover:text-amber-950 flex items-center justify-center text-emerald-200 transition-all">
+                        <i class="fa-brands fa-youtube"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-8 flex flex-col sm:flex-row justify-between items-center text-xs text-emerald-400/80 gap-4">
+            <p>© 2026 XIN CẢM ƠN Vietnamese Kitchen. All Rights Reserved.</p>
+            <div class="flex gap-6">
+                <a href="#" class="hover:underline">개인정보처리방침</a>
+                <a href="#" class="hover:underline">이용약관</a>
+            </div>
+        </div>
+    </footer>
+
+    <div id="cartDrawer" class="fixed inset-0 z-50 pointer-events-none transition-opacity duration-300 opacity-0">
+        <!-- Backdrop -->
+        <div id="cartBackdrop" onclick="toggleCartDrawer()" class="absolute inset-0 bg-black/50 backdrop-blur-sm"></div>
+
+        <!-- Drawer Content -->
+        <div id="cartContent" class="absolute top-0 right-0 h-full w-full max-w-md bg-white shadow-2xl transition-transform duration-300 translate-x-full pointer-events-auto flex flex-col">
+            <!-- Cart Header -->
+            <div class="p-6 border-b border-gray-100 flex items-center justify-between bg-vnGreen text-white">
+                <div class="flex items-center gap-2">
+                    <i class="fa-solid fa-bag-shopping text-vnGold text-lg"></i>
+                    <h3 class="font-bold text-lg font-serif">주문 장바구니</h3>
+                </div>
+                <button onclick="toggleCartDrawer()" class="text-white hover:text-vnGold text-xl focus:outline-none">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+            </div>
+
+            <!-- Cart Items Scrollable Area -->
+            <div id="cartItemsList" class="flex-1 overflow-y-auto p-6 space-y-4 custom-scrollbar">
+                <!-- Dynamically Rendered -->
+            </div>
+
+            <!-- Cart Footer & Checkout -->
+            <div class="p-6 border-t border-gray-100 bg-amber-50/50 space-y-4">
+                <div class="space-y-2 text-sm">
+                    <div class="flex justify-between text-gray-600">
+                        <span>주문금액</span>
+                        <span id="cartSubtotal">0 원</span>
+                    </div>
+                    <div class="flex justify-between text-gray-600">
+                        <span>배달 팁 (기본)</span>
+                        <span id="cartDeliveryFee">3,000 원</span>
+                    </div>
+                    <div class="flex justify-between text-base font-extrabold text-amber-950 pt-2 border-t border-gray-200">
+                        <span>총 결제금액</span>
+                        <span id="cartTotal" class="text-vnRed">0 원</span>
+                    </div>
+                </div>
+
+                <button onclick="openCheckoutModal()" id="btnCheckout" disabled 
+                        class="w-full bg-vnGreen hover:bg-vnGreenLight text-vnGold font-bold py-3.5 rounded-xl shadow transition-all flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed">
+                    <i class="fa-solid fa-credit-card"></i> 주문하기 / 결제 진행
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <div id="menuDetailModal" class="fixed inset-0 z-50 hidden items-center justify-center p-4 bg-black/60 backdrop-blur-sm">
+        <div class="bg-white rounded-3xl max-w-lg w-full overflow-hidden shadow-2xl border border-amber-900/10 relative transform transition-all animate-[fadeIn_0.2s_ease-out]">
+            <button onclick="closeMenuModal()" class="absolute top-4 right-4 bg-black/50 hover:bg-black/70 text-white w-9 h-9 rounded-full flex items-center justify-center z-10">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+
+            <div class="h-60 overflow-hidden relative">
+                <img id="modalImg" src="" alt="" class="w-full h-full object-cover">
+                <div class="absolute bottom-3 left-4 bg-vnGreen/90 text-vnGold text-xs font-bold px-3 py-1 rounded-full backdrop-blur-sm" id="modalCategory">
+                    카테고리
+                </div>
+            </div>
+
+            <div class="p-6 space-y-4">
+                <div class="flex justify-between items-start">
+                    <div>
+                        <h3 id="modalTitle" class="text-2xl font-bold font-serif text-amber-950">메뉴명</h3>
+                        <p id="modalVietName" class="text-xs text-amber-800 italic mt-0.5">Vietnamese Name</p>
+                    </div>
+                    <span id="modalPrice" class="text-xl font-extrabold text-vnRed">0 원</span>
+                </div>
+
+                <p id="modalDesc" class="text-sm text-gray-600 leading-relaxed">상세 설명이 들어갑니다.</p>
+
+                <!-- Ingredients & Spice Level -->
+                <div class="bg-amber-50 p-4 rounded-2xl border border-amber-900/5 space-y-2 text-xs">
+                    <div class="flex items-center gap-2">
+                        <span class="font-bold text-amber-950 w-16">주요 재료:</span>
+                        <span id="modalIngredients" class="text-gray-700">재료 정보</span>
+                    </div>
+                    <div class="flex items-center gap-2">
+                        <span class="font-bold text-amber-950 w-16">매운 단계:</span>
+                        <span id="modalSpiceLevel" class="text-amber-900 font-semibold">단계</span>
+                    </div>
+                </div>
+
+                <div class="pt-2 flex gap-3">
+                    <button onclick="addCurrentModalToCart()" class="flex-1 bg-vnGreen hover:bg-vnGreenLight text-vnGold font-bold py-3.5 rounded-xl shadow transition-all flex items-center justify-center gap-2 text-sm">
+                        <i class="fa-solid fa-cart-plus"></i> 장바구니에 담기
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="checkoutModal" class="fixed inset-0 z-50 hidden items-center justify-center p-4 bg-black/60 backdrop-blur-sm">
+        <div class="bg-white rounded-3xl max-w-md w-full p-6 sm:p-8 shadow-2xl relative text-center">
+            <div class="w-16 h-16 rounded-full bg-emerald-100 text-vnGreen flex items-center justify-center text-3xl mx-auto mb-4">
+                <i class="fa-solid fa-check"></i>
+            </div>
+
+            <h3 class="text-2xl font-bold text-amber-950 font-serif mb-2">주문이 접수되었습니다!</h3>
+            <p class="text-xs sm:text-sm text-gray-600 mb-6">
+                씬깜온 수제 요리가 주방에서 정성껏 조리되기 시작합니다.<br>
+                감사합니다 (Xin Cảm Ơn)!
+            </p>
+
+            <div class="bg-gray-50 p-4 rounded-2xl text-left text-xs space-y-2 mb-6">
+                <div class="flex justify-between text-gray-600">
+                    <span>주문 번호:</span>
+                    <span class="font-bold text-amber-950" id="orderNumber">#VN-8821</span>
+                </div>
+                <div class="flex justify-between text-gray-600">
+                    <span>총 결제금액:</span>
+                    <span class="font-bold text-vnRed" id="orderConfirmedTotal">0 원</span>
+                </div>
+                <div class="flex justify-between text-gray-600">
+                    <span>예상 소요시간:</span>
+                    <span class="font-bold text-amber-950">약 25 ~ 35분</span>
+                </div>
+            </div>
+
+            <button onclick="closeCheckoutModal()" class="w-full bg-vnGreen hover:bg-vnGreenLight text-vnGold font-bold py-3 rounded-xl transition-all text-sm">
+                확인 및 닫기
+            </button>
+        </div>
+    </div>
+
+    <script>
+        // 1. Menu Dataset
+        const menuData = [
+            {
+                id: 'p1',
+                name: '차돌 양지 쌀국수',
+                vietName: 'Phở Bò Tái Nạm',
+                category: 'pho',
+                price: 11500,
+                spicy: 0,
+                badge: '인기',
+                image: 'https://images.unsplash.com/photo-1582878826629-29b7ad1cdc43?auto=format&fit=crop&w=600&q=80',
+                desc: '24시간 고아낸 100% 진한 소사골 육수에 야들야들한 차돌박이와 차돌양지를 아낌없이 올린 씬깜온의 대표 쌀국수입니다.',
+                ingredients: '소사골 육수, 쌀면, 차돌박이, 양지, 숙주, 양파슬라이스, 대파'
+            },
+            {
+                id: 'p2',
+                name: '매콤 분보후에 (얼큰 쌀국수)',
+                vietName: 'Bún Bò Huế',
+                category: 'pho',
+                price: 12500,
+                spicy: 2,
+                badge: '추천',
+                image: 'https://images.unsplash.com/photo-1569718212165-3a8278d5f624?auto=format&fit=crop&w=600&q=80',
+                desc: '베트남 중부 후에 지방 스타일의 칼칼하고 깊은 스파이시 쌀국수. 레몬그라스의 상큼한 향과 고추기름의 감칠맛이 특징입니다.',
+                ingredients: '매콤 육수, 중면, 양지, 우삼겹, 피시볼, 레몬그라스, 고추기름'
+            },
+            {
+                id: 'p3',
+                name: '닭고기 쌀국수 (퍼가)',
+                vietName: 'Phở Gà',
+                category: 'pho',
+                price: 10500,
+                spicy: 0,
+                badge: '담백',
+                image: 'https://images.unsplash.com/photo-1594998893017-36147cbcae05?auto=format&fit=crop&w=600&q=80',
+                desc: '담백하고 깔끔하게 푹 끓여낸 닭육수에 부드러운 닭가슴살과 살코기를 찢어 올린 깔끔한 맛의 쌀국수.',
+                ingredients: '닭육수, 쌀면, 닭살코기, 쪽파, 실쪽파, 라임'
+            },
+            {
+                id: 'b1',
+                name: '오리지널 돼지고기 반미',
+                vietName: 'Bánh Mì Thịt Nướng',
+                category: 'banhmi',
+                price: 8500,
+                spicy: 1,
+                badge: 'BEST',
+                image: 'https://images.unsplash.com/photo-1626804475297-4160820cca34?auto=format&fit=crop&w=600&q=80',
+                desc: '매일 아침 구워내는 겉바속촉 바게트에 참숯으로 구운 돼지목살 양념구이, 특제 수제 파테와 절임 야채를 가득 채운 반미.',
+                ingredients: '수제 쌀바게트, 참숯 돼지고기, 수제 파테, 무당근 절임, 오이, 고수, 특제 소스'
+            },
+            {
+                id: 'b2',
+                name: '에그 스크램블 & 치즈 반미',
+                vietName: 'Bánh Mì Ốp La',
+                category: 'banhmi',
+                price: 7800,
+                spicy: 0,
+                badge: '고소함',
+                image: 'https://images.unsplash.com/photo-1509722747041-616f39b57569?auto=format&fit=crop&w=600&q=80',
+                desc: '부드러운 에그 스크램블과 체다 치즈, 스리라차 마요가 어우러진 남녀노소 누구나 좋아하는 브런치 스타일 반미.',
+                ingredients: '쌀바게트, 계란 2개, 체다치즈, 마요네즈, 스리라차, 무절임'
+            },
+            {
+                id: 'bc1',
+                name: '하노이 정통 분짜',
+                vietName: 'Bún Chả Hà Nội',
+                category: 'buncha',
+                price: 14000,
+                spicy: 0,
+                badge: '대표',
+                image: 'https://images.unsplash.com/photo-1541832676-9b763b0239ab?auto=format&fit=crop&w=600&q=80',
+                desc: '숯불에 직접 구운 직화 돼지고기와 수제 떡갈비, 신선한 야채와 버미셀리 면을 달콤새콤한 피시소스 느억맘 늑맘에 적셔 먹는 요리.',
+                ingredients: '버미셀리 쌀면, 숯불 돼지고기, 완자, 모듬 쌈야채, 특제 느억맘 늑맘 육수'
+            },
+            {
+                id: 'bc2',
+                name: '해산물 파인애플 볶음밥',
+                vietName: 'Cơm Chiên Dứa',
+                category: 'buncha',
+                price: 12000,
+                spicy: 0,
+                badge: '',
+                image: 'https://images.unsplash.com/photo-1603133872878-684f208fb84b?auto=format&fit=crop&w=600&q=80',
+                desc: '통 파인애플 속을 파내어 새우, 오징어, 야채를 고슬고슬하게 볶아낸 황금빛 고소한 베트남식 볶음밥.',
+                ingredients: '안남미, 통새우, 오징어, 파인애플, 피망, 수제 볶음 소스'
+            },
+            {
+                id: 's1',
+                name: '수제 넴 (짜조 4pcs)',
+                vietName: 'Chả Giò',
+                category: 'side',
+                price: 6500,
+                spicy: 0,
+                badge: '바삭',
+                image: 'https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=600&q=80',
+                desc: '라이스페이퍼에 다진 돼지고기와 목이버섯, 당면을 피에 감싸 황금빛으로 바삭하게 튀겨낸 프리미엄 짜조.',
+                ingredients: '라이스페이퍼, 돼지고기, 목이버섯, 당면, 스위트칠리 소스'
+            },
+            {
+                id: 's2',
+                name: '베트남 연유 커피 (카페 쓰어다)',
+                vietName: 'Cà Phê Sữa Đá',
+                category: 'side',
+                price: 4800,
+                spicy: 0,
+                badge: '달콤',
+                image: 'https://images.unsplash.com/photo-1517701550927-30cf4ba1dba5?auto=format&fit=crop&w=600&q=80',
+                desc: '베트남 다크 로스팅 원두를 핀(Phin)으로 추출하여 달콤하고 진한 연유를 섞어 마시는 극강의 시원함.',
+                ingredients: '베트남 로브스타 원두, 달콤한 연유, 얼음'
+            }
+        ];
+
+        // 2. Global Application State
+        let cart = [];
+        let activeCategory = 'all';
+        let currentModalItem = null;
+
+        // 3. Render Menu Items
+        function renderMenu(items) {
+            const grid = document.getElementById('menuGrid');
+            const emptyState = document.getElementById('emptyMenuState');
+
+            if (items.length === 0) {
+                grid.innerHTML = '';
+                emptyState.classList.remove('hidden');
+                return;
+            }
+
+            emptyState.classList.add('hidden');
+            grid.innerHTML = items.map(item => {
+                // Spicy Indicator Icons
+                let spiceHtml = '';
+                if (item.spicy > 0) {
+                    spiceHtml = `<span class="badge-spice text-vnRed text-xs font-bold">` +
+                                `<i class="fa-solid fa-pepper-hot"></i>`.repeat(item.spicy) +
+                                `</span>`;
+                } else {
+                    spiceHtml = `<span class="text-xs text-gray-400 font-normal">순한맛</span>`;
+                }
+
+                return `
+                <div class="bg-white rounded-3xl overflow-hidden border border-amber-900/10 shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col justify-between group">
+                    <div>
+                        <div class="h-48 overflow-hidden relative cursor-pointer" onclick="openMenuModal('${item.id}')">
+                            <img src="${item.image}" alt="${item.name}" 
+                                 class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                                 onerror="this.src='https://placehold.co/600x400/0F3800/FFB800?text=${encodeURIComponent(item.name)}'">
+                            ${item.badge ? `<span class="absolute top-3 left-3 bg-vnRed text-white text-[11px] font-bold px-2.5 py-1 rounded-full shadow">${item.badge}</span>` : ''}
+                            <button class="absolute bottom-3 right-3 bg-white/90 hover:bg-white text-amber-950 w-9 h-9 rounded-full flex items-center justify-center shadow-md backdrop-blur-sm transition-transform active:scale-95">
+                                <i class="fa-solid fa-expand text-xs"></i>
+                            </button>
+                        </div>
+
+                        <div class="p-5">
+                            <div class="flex items-center justify-between mb-1">
+                                <h3 class="font-bold text-lg text-amber-950 font-serif cursor-pointer hover:text-vnGreen transition-colors" onclick="openMenuModal('${item.id}')">${item.name}</h3>
+                                ${spiceHtml}
+                            </div>
+                            <p class="text-xs text-amber-800 italic mb-2 font-medium">${item.vietName}</p>
+                            <p class="text-xs text-gray-500 line-clamp-2 leading-relaxed">${item.desc}</p>
+                        </div>
+                    </div>
+
+                    <div class="px-5 pb-5 pt-2 flex items-center justify-between border-t border-gray-100">
+                        <span class="font-extrabold text-base text-amber-950">${item.price.toLocaleString()} 원</span>
+                        <button onclick="addToCart('${item.id}')" 
+                                class="bg-amber-100 hover:bg-vnGreen hover:text-vnGold text-amber-900 font-bold px-3.5 py-2 rounded-xl text-xs transition-all flex items-center gap-1.5 cursor-pointer">
+                            <i class="fa-solid fa-plus"></i> 담기
+                        </button>
+                    </div>
+                </div>
+                `;
+            }).join('');
+        }
+
+        // 4. Filter & Search Logic
+        function filterMenu(category) {
+            activeCategory = category;
+            
+            // Update active state on buttons
+            document.querySelectorAll('#categoryButtons .cat-btn').forEach(btn => {
+                if (btn.getAttribute('data-category') === category) {
+                    btn.className = "cat-btn active px-5 py-2.5 rounded-full text-sm font-bold transition-all bg-vnGreen text-vnGold shadow-md";
+                } else {
+                    btn.className = "cat-btn px-5 py-2.5 rounded-full text-sm font-medium transition-all bg-white text-gray-700 border border-amber-900/10 hover:bg-amber-50";
+                }
+            });
+
+            applyFilters();
+        }
+
+        function searchMenu() {
+            applyFilters();
+        }
+
+        function applyFilters() {
+            const query = document.getElementById('menuSearchInput').value.toLowerCase().trim();
+            
+            const filtered = menuData.filter(item => {
+                const matchesCategory = (activeCategory === 'all' || item.category === activeCategory);
+                const matchesQuery = item.name.toLowerCase().includes(query) || 
+                                     item.vietName.toLowerCase().includes(query) || 
+                                     item.ingredients.toLowerCase().includes(query);
+                return matchesCategory && matchesQuery;
+            });
+
+            renderMenu(filtered);
+        }
+
+        // 5. Customizer Realtime Update Logic
+        function updateCustomizer() {
+            // Broth
+            const brothRadio = document.querySelector('input[name="custBroth"]:checked');
+            const brothName = brothRadio ? brothRadio.value : '';
+            const brothPrice = brothRadio ? parseInt(brothRadio.getAttribute('data-price')) : 0;
+
+            // Meats
+            const meatCheckboxes = document.querySelectorAll('input[name="custMeat"]:checked');
+            let meatNames = [];
+            let meatPriceTotal = 0;
+            meatCheckboxes.forEach(cb => {
+                meatNames.push(cb.value);
+                meatPriceTotal += parseInt(cb.getAttribute('data-price'));
+            });
+
+            // Herb & Spice
+            const herbVal = document.getElementById('custHerb').value;
+            const spiceVal = document.getElementById('custSpice').value;
+
+            // Noodle Options
+            const noodleRadio = document.querySelector('input[name="custNoodle"]:checked');
+            const noodleVal = noodleRadio ? noodleRadio.value : '';
+            const extraNoodle = document.getElementById('custExtraNoodle').checked;
+            const extraNoodlePrice = extraNoodle ? 1000 : 0;
+
+            // Base price: 9500
+            const totalPrice = 9500 + brothPrice + meatPriceTotal + extraNoodlePrice;
+
+            // Update DOM Preview
+            document.getElementById('previewBroth').querySelector('.font-semibold').textContent = brothName;
+            document.getElementById('previewMeat').querySelector('.font-semibold').textContent = meatNames.length > 0 ? meatNames.join(', ') : '선택 없음';
+            document.getElementById('previewHerb').querySelector('.font-semibold').textContent = herbVal;
+            document.getElementById('previewSpice').querySelector('.font-semibold').textContent = spiceVal;
+            document.getElementById('previewNoodle').querySelector('.font-semibold').textContent = noodleVal + (extraNoodle ? ' (+면사리)' : '');
+            document.getElementById('customTotalPrice').textContent = totalPrice.toLocaleString() + ' 원';
+
+            // Radio button UI icon sync
+            document.querySelectorAll('input[name="custBroth"]').forEach(input => {
+                const icon = input.closest('label').querySelector('.radio-icon');
+                if (input.checked) {
+                    if (icon) icon.classList.remove('hidden');
+                    input.closest('label').classList.add('border-vnGold');
+                } else {
+                    if (icon) icon.classList.add('hidden');
+                    input.closest('label').classList.remove('border-vnGold');
+                }
+            });
+        }
+
+        function addCustomToCart() {
+            const brothRadio = document.querySelector('input[name="custBroth"]:checked');
+            const brothPrice = brothRadio ? parseInt(brothRadio.getAttribute('data-price')) : 0;
+            const meatCheckboxes = document.querySelectorAll('input[name="custMeat"]:checked');
+            
+            let meatNames = [];
+            let meatPriceTotal = 0;
+            meatCheckboxes.forEach(cb => {
+                meatNames.push(cb.value);
+                meatPriceTotal += parseInt(cb.getAttribute('data-price'));
+            });
+
+            const extraNoodle = document.getElementById('custExtraNoodle').checked;
+            const totalPrice = 9500 + brothPrice + meatPriceTotal + (extraNoodle ? 1000 : 0);
+
+            const customItem = {
+                id: 'custom-' + Date.now(),
+                name: '나만의 DIY 쌀국수',
+                vietName: 'Custom Phở Special',
+                price: totalPrice,
+                qty: 1,
+                isCustom: true,
+                details: `${brothRadio.value} / ${meatNames.join(', ')} / ${document.getElementById('custHerb').value} / ${document.getElementById('custSpice').value}`
+            };
+
+            cart.push(customItem);
+            updateCartUI();
+            toggleCartDrawer();
+        }
+
+        // 6. Cart Drawer & Operations
+        function addToCart(itemId) {
+            const item = menuData.find(m => m.id === itemId);
+            if (!item) return;
+
+            const existing = cart.find(c => c.id === itemId);
+            if (existing) {
+                existing.qty += 1;
+            } else {
+                cart.push({
+                    id: item.id,
+                    name: item.name,
+                    vietName: item.vietName,
+                    price: item.price,
+                    qty: 1,
+                    isCustom: false
+                });
+            }
+
+            updateCartUI();
+        }
+
+        function updateCartQty(id, change) {
+            const index = cart.findIndex(c => c.id === id);
+            if (index > -1) {
+                cart[index].qty += change;
+                if (cart[index].qty <= 0) {
+                    cart.splice(index, 1);
+                }
+            }
+            updateCartUI();
+        }
+
+        function updateCartUI() {
+            const cartBadge = document.getElementById('cartBadge');
+            const cartItemsList = document.getElementById('cartItemsList');
+            const cartSubtotal = document.getElementById('cartSubtotal');
+            const cartTotal = document.getElementById('cartTotal');
+            const btnCheckout = document.getElementById('btnCheckout');
+
+            const totalItemsCount = cart.reduce((sum, item) => sum + item.qty, 0);
+            
+            // Badge update
+            if (totalItemsCount > 0) {
+                cartBadge.textContent = totalItemsCount;
+                cartBadge.classList.remove('scale-0');
+            } else {
+                cartBadge.classList.add('scale-0');
+            }
+
+            // Cart Items Render
+            if (cart.length === 0) {
+                cartItemsList.innerHTML = `
+                    <div class="text-center py-12 text-gray-400">
+                        <i class="fa-solid fa-basket-shopping text-4xl mb-3"></i>
+                        <p class="text-sm">장바구니가 비어 있습니다.</p>
+                    </div>
+                `;
+                cartSubtotal.textContent = '0 원';
+                cartTotal.textContent = '0 원';
+                btnCheckout.disabled = true;
+                return;
+            }
+
+            btnCheckout.disabled = false;
+            let subtotal = 0;
+
+            cartItemsList.innerHTML = cart.map(item => {
+                const itemTotal = item.price * item.qty;
+                subtotal += itemTotal;
+
+                return `
+                <div class="bg-amber-50/50 border border-amber-900/10 p-4 rounded-2xl flex justify-between items-center">
+                    <div class="space-y-1 max-w-[60%]">
+                        <h4 class="font-bold text-sm text-amber-950 font-serif">${item.name}</h4>
+                        ${item.isCustom ? `<p class="text-[11px] text-emerald-800 leading-tight">${item.details}</p>` : `<p class="text-xs text-gray-500">${item.vietName}</p>`}
+                        <div class="text-xs font-extrabold text-vnRed pt-1">${itemTotal.toLocaleString()} 원</div>
+                    </div>
+
+                    <div class="flex items-center gap-2 bg-white px-2 py-1 rounded-xl border border-gray-200">
+                        <button onclick="updateCartQty('${item.id}', -1)" class="w-6 h-6 rounded-lg text-gray-600 hover:bg-gray-100 flex items-center justify-center text-xs font-bold">
+                            -
+                        </button>
+                        <span class="text-xs font-bold w-4 text-center text-amber-950">${item.qty}</span>
+                        <button onclick="updateCartQty('${item.id}', 1)" class="w-6 h-6 rounded-lg text-gray-600 hover:bg-gray-100 flex items-center justify-center text-xs font-bold">
+                            +
+                        </button>
+                    </div>
+                </div>
+                `;
+            }).join('');
+
+            const deliveryFee = 3000;
+            cartSubtotal.textContent = subtotal.toLocaleString() + ' 원';
+            cartTotal.textContent = (subtotal + deliveryFee).toLocaleString() + ' 원';
+        }
+
+        function toggleCartDrawer() {
+            const drawer = document.getElementById('cartDrawer');
+            const content = document.getElementById('cartContent');
+
+            if (drawer.classList.contains('opacity-0')) {
+                drawer.classList.remove('opacity-0', 'pointer-events-none');
+                content.classList.remove('translate-x-full');
+            } else {
+                drawer.classList.add('opacity-0', 'pointer-events-none');
+                content.classList.add('translate-x-full');
+            }
+        }
+
+        // 7. Menu Modal
+        function openMenuModal(itemId) {
+            const item = menuData.find(m => m.id === itemId);
+            if (!item) return;
+
+            currentModalItem = item;
+
+            document.getElementById('modalImg').src = item.image;
+            document.getElementById('modalTitle').textContent = item.name;
+            document.getElementById('modalVietName').textContent = item.vietName;
+            document.getElementById('modalPrice').textContent = item.price.toLocaleString() + ' 원';
+            document.getElementById('modalDesc').textContent = item.desc;
+            document.getElementById('modalIngredients').textContent = item.ingredients;
+            document.getElementById('modalCategory').textContent = item.category.toUpperCase();
+
+            let spiceText = '0단계 (순한맛)';
+            if (item.spicy === 1) spiceText = '1단계 (기본 약간 매콤)';
+            if (item.spicy === 2) spiceText = '2단계 (얼큰 매콤)';
+            if (item.spicy === 3) spiceText = '3단계 (핫 스파이시)';
+
+            document.getElementById('modalSpiceLevel').textContent = spiceText;
+
+            const modal = document.getElementById('menuDetailModal');
+            modal.classList.remove('hidden');
+            modal.classList.add('flex');
+        }
+
+        function closeMenuModal() {
+            const modal = document.getElementById('menuDetailModal');
+            modal.classList.add('hidden');
+            modal.classList.remove('flex');
+        }
+
+        function addCurrentModalToCart() {
+            if (currentModalItem) {
+                addToCart(currentModalItem.id);
+                closeMenuModal();
+                toggleCartDrawer();
+            }
+        }
+
+        // 8. Reservation Form Handling
+        function handleReservationSubmit(e) {
+            e.preventDefault();
+            const name = document.getElementById('resName').value;
+            const date = document.getElementById('resDate').value;
+            const time = document.getElementById('resTime').value;
+            const guests = document.getElementById('resGuests').value;
+
+            alert(`[예약 완료]\n\n${name}님, ${date} ${time} (${guests}) 테이블 예약이 접수되었습니다.\n확인 문자를 입력하신 연락처로 발송해 드렸습니다.`);
+            document.getElementById('reservationForm').reset();
+        }
+
+        // 9. Checkout Modal Logic
+        function openCheckoutModal() {
+            if (cart.length === 0) return;
+            
+            const subtotal = cart.reduce((sum, item) => sum + (item.price * item.qty), 0);
+            const total = subtotal + 3000;
+
+            document.getElementById('orderConfirmedTotal').textContent = total.toLocaleString() + ' 원';
+            document.getElementById('orderNumber').textContent = '#VN-' + Math.floor(1000 + Math.random() * 9000);
+
+            toggleCartDrawer();
+
+            const modal = document.getElementById('checkoutModal');
+            modal.classList.remove('hidden');
+            modal.classList.add('flex');
+
+            // Clear Cart
+            cart = [];
+            updateCartUI();
+        }
+
+        function closeCheckoutModal() {
+            const modal = document.getElementById('checkoutModal');
+            modal.classList.add('hidden');
+            modal.classList.remove('flex');
+        }
+
+        function toggleMobileNav() {
+            const mobileMenu = document.getElementById('mobileMenu');
+            const icon = document.getElementById('mobileNavIcon');
+            
+            if (mobileMenu.classList.contains('hidden')) {
+                mobileMenu.classList.remove('hidden');
+                icon.className = 'fa-solid fa-xmark';
+            } else {
+                mobileMenu.classList.add('hidden');
+                icon.className = 'fa-solid fa-bars';
+            }
+        }
+
+        // 10. Initialization
+        window.onload = function() {
+            // Set default date for reservation input (Today)
+            const today = new Date().toISOString().split('T')[0];
+            document.getElementById('resDate').value = today;
+
+            // Initial Menu Render & Customizer Sync
+            renderMenu(menuData);
+            updateCustomizer();
+        }
+    </script>
+</body>
+</html>
